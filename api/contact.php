@@ -1,9 +1,10 @@
 <?php
-// True-SMTP contact endpoint — Gmail via STARTTLS, no dependencies.
+// True-SMTP contact endpoint — Gmail via PHPMailer (STARTTLS), no Composer needed.
+// Library lives in api/lib/ (PHPMailer v6.9.3 src, MIT license).
 // Secrets NEVER live here. Set env vars or api/config.local.php (gitignored).
 //   GMAIL_USER, GMAIL_APP_PASSWORD, MAIL_TO (optional, defaults to GMAIL_USER)
 // Local XAMPP: use api/config.local.php (see config.example.php).
-// Production: set real env vars on your host (Render/Railway/VPS). GitHub Pages CANNOT run this file.
+// Production: set real env vars on your host. GitHub Pages CANNOT run this file.
 
 // Never render PHP errors to visitors (stack traces can contain arguments).
 ini_set('display_errors', '0');
@@ -11,6 +12,13 @@ ini_set('log_errors', '1');
 error_reporting(E_ALL);
 
 header('Content-Type: application/json; charset=utf-8');
+
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception as MailerException;
+
+require __DIR__ . '/lib/Exception.php';
+require __DIR__ . '/lib/PHPMailer.php';
+require __DIR__ . '/lib/SMTP.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
   http_response_code(405);
@@ -71,36 +79,42 @@ if ($user === '' || $pass === '' || $to === '' || !filter_var($to, FILTER_VALIDA
   exit;
 }
 
-// ---- build message ----
-$safeBody = str_replace('.', '..', $message); // dot-stuffing guard handled again at send
-$headers = [
-  'From: "' . addcslashes(mb_substr($name, 0, 60), '"') . '" <' . $user . '>',
-  'Reply-To: ' . $email,
-  'To: ' . $to,
-  'Subject: [Portfolio] ' . mb_substr($subject, 0, 140),
-  'MIME-Version: 1.0',
-  'Content-Type: text/plain; charset=UTF-8',
-  'X-Mailer: portfolio-php-smtp',
-];
-$body = "Name: {$name}\nEmail: {$email}\nSubject: {$subject}\nIP: {$ip}\n\n{$message}\n";
+// ---- CA bundle for TLS verification (XAMPP php.ini often leaves this unset) ----
+$ca = null;
+foreach (['C:\\xampp\\apache\\bin\\curl-ca-bundle.crt', 'C:\\xampp\\php\\extras\\ssl\\cacert.pem', ini_get('openssl.cafile')] as $c) {
+  if (is_string($c) && $c !== '' && is_file($c)) { $ca = $c; break; }
+}
 
-// ---- send via Gmail SMTP ----
+// ---- send via PHPMailer + Gmail SMTP ----
 try {
-  $result = smtp_send('smtp.gmail.com', 587, $user, $pass, $user, $to, implode("\r\n", $headers), $body);
+  $mail = new PHPMailer(true);
+  $mail->isSMTP();
+  $mail->Host = 'smtp.gmail.com';
+  $mail->Port = 587;
+  $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+  $mail->SMTPAuth = true;
+  $mail->Username = $user;
+  $mail->Password = $pass;
+  $mail->Timeout = 15;
+  $mail->CharSet = 'UTF-8';
+  if ($ca !== null) {
+    $mail->SMTPOptions = ['ssl' => [
+      'verify_peer' => true, 'verify_peer_name' => true,
+      'peer_name' => 'smtp.gmail.com', 'cafile' => $ca,
+    ]];
+  }
+  $mail->setFrom($user, mb_substr($name, 0, 60));
+  $mail->addAddress($to);
+  $mail->addReplyTo($email, mb_substr($name, 0, 60));
+  $mail->Subject = '[Portfolio] ' . mb_substr($subject, 0, 140);
+  $mail->Body = "Name: {$name}\nEmail: {$email}\nSubject: {$subject}\nIP: {$ip}\n\n{$message}\n";
+  $mail->send();
+} catch (MailerException $e) {
+  error_log('portfolio smtp: ' . mb_substr($e->getMessage(), 0, 200));
+  fail(mapMailerError($e->getMessage(), $to), 502);
 } catch (Throwable $t) {
   error_log('portfolio smtp: exception ' . get_class($t));
-  $result = 'send|Internal mail error.';
-}
-if ($result !== true) {
-  error_log('portfolio smtp: ' . $result); // server log only, no secrets
-  [$stage] = explode('|', $result, 2) + ['unknown'];
-  $msg = match ($stage) {
-    'connect' => 'Could not reach the mail server. Please try again later.',
-    'tls' => 'Secure connection to the mail server failed. Please try again later.',
-    'auth' => 'Mail login was rejected. The site owner needs to check the mail user/app password.',
-    default => 'Mail server rejected the message. Please email ' . $to . ' directly.',
-  };
-  fail($msg, 502);
+  fail('Mail server rejected the message. Please email ' . $to . ' directly.', 502);
 }
 
 echo json_encode(['ok' => true]);
@@ -113,68 +127,17 @@ function fail(string $msg, int $code): void {
   exit;
 }
 
-function smtp_read($fp): array {
-  $out = '';
-  while (($line = fgets($fp, 1024)) !== false) {
-    $out .= $line;
-    if (preg_match('/^\d{3} /', $line)) break;
+/** Map PHPMailer errors to safe, stage-specific visitor messages (no secrets). */
+function mapMailerError(string $detail, string $to): string {
+  $d = strtolower($detail);
+  if (str_contains($d, 'connect') || str_contains($d, 'timed out') || str_contains($d, 'network')) {
+    return 'Could not reach the mail server. Please try again later.';
   }
-  return [(int)substr($out, 0, 3), $out];
-}
-
-function smtp_cmd($fp, string $cmd, array $want): array {
-  if ($cmd !== '') fwrite($fp, $cmd . "\r\n");
-  [$code, $text] = smtp_read($fp);
-  if (!in_array($code, $want, true)) return [false, "Unexpected reply {$code}: " . mb_substr(trim($text), 0, 120)];
-  return [true, $text];
-}
-
-/** @return true|string true on success, "stage|detail" (sanitized, no secrets) on failure */
-function smtp_send(string $host, int $port, string $user, string $pass, string $from, string $to, string $headers, string $body) {
-  $fp = @stream_socket_client("tcp://{$host}:{$port}", $errno, $errstr, 15);
-  if (!$fp) return 'connect|Connection failed.';
-  stream_set_timeout($fp, 15);
-
-  [$code] = smtp_read($fp);
-  if ($code !== 220) { fclose($fp); return 'connect|SMTP greeting failed.'; }
-
-  [$ok, $e] = smtp_cmd($fp, 'EHLO portfolio', [250]);
-  if (!$ok) { fclose($fp); return 'connect|' . $e; }
-  [$ok, $e] = smtp_cmd($fp, 'STARTTLS', [220]);
-  if (!$ok) { fclose($fp); return 'tls|' . $e; }
-  // Pin TLS verification to a real CA bundle (XAMPP/Apache php.ini often leaves openssl.cafile unset)
-  $ca = null;
-  foreach (['C:\\xampp\\apache\\bin\\curl-ca-bundle.crt', 'C:\\xampp\\php\\extras\\ssl\\cacert.pem', ini_get('openssl.cafile')] as $c) {
-    if (is_string($c) && $c !== '' && is_file($c)) { $ca = $c; break; }
+  if (str_contains($d, 'tls') || str_contains($d, 'starttls') || str_contains($d, 'crypto') || str_contains($d, 'certificate') || str_contains($d, 'ssl')) {
+    return 'Secure connection to the mail server failed. Please try again later.';
   }
-  if ($ca === null) { fclose($fp); return 'tls|No CA bundle found for verification.'; }
-  stream_context_set_option($fp, ['ssl' => [
-    'verify_peer' => true, 'verify_peer_name' => true,
-    'peer_name' => $host, 'cafile' => $ca,
-  ]]);
-  if (!@stream_socket_enable_crypto($fp, true, STREAM_CRYPTO_METHOD_TLS_CLIENT)) {
-    fclose($fp); return 'tls|TLS negotiation failed.';
+  if (str_contains($d, 'auth') || str_contains($d, 'password') || str_contains($d, 'username') || str_contains($d, 'credentials') || str_contains($d, '535') || str_contains($d, '534')) {
+    return 'Mail login was rejected. The site owner needs to check the mail user/app password.';
   }
-  [$ok, $e] = smtp_cmd($fp, 'EHLO portfolio', [250]);
-  if (!$ok) { fclose($fp); return 'tls|' . $e; }
-  [$ok, $e] = smtp_cmd($fp, 'AUTH LOGIN', [334]);
-  if (!$ok) { fclose($fp); return 'auth|' . $e; }
-  [$ok, $e] = smtp_cmd($fp, base64_encode($user), [334]);
-  if (!$ok) { fclose($fp); return 'auth|Username rejected.'; }
-  [$ok, $e] = smtp_cmd($fp, base64_encode($pass), [235]);
-  if (!$ok) { fclose($fp); return 'auth|App password rejected.'; }
-  [$ok, $e] = smtp_cmd($fp, "MAIL FROM:<{$from}>", [250]);
-  if (!$ok) { fclose($fp); return 'send|' . $e; }
-  [$ok, $e] = smtp_cmd($fp, "RCPT TO:<{$to}>", [250, 251]);
-  if (!$ok) { fclose($fp); return 'send|' . $e; }
-  [$ok, $e] = smtp_cmd($fp, 'DATA', [354]);
-  if (!$ok) { fclose($fp); return 'send|' . $e; }
-
-  $stuffed = preg_replace('/^\./m', '..', $body);
-  fwrite($fp, $headers . "\r\n\r\n" . $stuffed . "\r\n.\r\n");
-  [$code2, $text2] = smtp_read($fp);
-  fwrite($fp, "QUIT\r\n");
-  fclose($fp);
-  if ($code2 !== 250) return 'send|Message refused by mail server.';
-  return true;
+  return 'Mail server rejected the message. Please email ' . $to . ' directly.';
 }
