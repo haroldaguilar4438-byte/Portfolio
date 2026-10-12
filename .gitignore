@@ -1,0 +1,7 @@
+# Secrets & local-only files — never commit these
+api/config.local.php
+.env
+*.local.php
+# OS / editor noise
+Thumbs.db
+.DS_Store

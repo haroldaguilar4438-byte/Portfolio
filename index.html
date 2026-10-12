@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Harold R. Aguilar — IT Portfolio</title>
+  <meta name="description" content="Industry-ready portfolio of Harold R. Aguilar, BSIT student and aspiring IT professional. Projects, problem-solving, cybersecurity awareness, responsible AI use, resume, career plan, and contact." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%234f7cff'/><text x='50' y='66' font-size='52' text-anchor='middle' fill='white' font-family='monospace'>&lt;/&gt;</text></svg>" />
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="bgfx" aria-hidden="true"><div class="bgfx-grid"></div><div class="bgfx-glow a"></div><div class="bgfx-glow b"></div><div class="bgfx-glow c"></div></div>
+
+  <header class="site-header">
+    <div class="container nav">
+      <a class="brand" href="#home" aria-label="Home">
+        <span class="brand-mark" aria-hidden="true">&lt;/&gt;</span>
+        <span><small>Portfolio</small><strong>Harold R. Aguilar</strong></span>
+      </a>
+      <nav aria-label="Primary">
+        <ul class="nav-links">
+          <li><a data-nav href="#home" class="active">Home</a></li>
+          <li><a data-nav href="#about">About</a></li>
+          <li><a data-nav href="#skills">Skills</a></li>
+          <li><a data-nav href="#projects">Projects</a></li>
+          <li><a data-nav href="#problem-solving">Problem-Solving</a></li>
+          <li><a data-nav href="#security">Security &amp; AI</a></li>
+          <li><a data-nav href="#career">Career</a></li>
+          <li><a data-nav href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+      <div class="nav-cta">
+        <a class="btn btn-ghost btn-sm" href="#contact">Contact</a>
+        <a class="btn btn-primary btn-sm" href="#resume">Resume</a>
+        <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">☰</button>
+      </div>
+    </div>
+    <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile">
+      <a data-nav href="#home">Home</a>
+      <a data-nav href="#about">About</a>
+      <a data-nav href="#skills">Skills</a>
+      <a data-nav href="#projects">Projects</a>
+      <a data-nav href="#problem-solving">Problem-Solving</a>
+      <a data-nav href="#security">Security &amp; AI</a>
+      <a data-nav href="#resume">Resume</a>
+      <a data-nav href="#career">Career</a>
+      <a data-nav href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main id="main">
+    <!-- ================= HERO ================= -->
+    <section class="hero" id="home" aria-labelledby="hero-title">
+      <div class="container hero-grid">
+        <div class="reveal visible">
+          <span class="eyebrow"><span class="pulse" aria-hidden="true"></span> Open to internship / entry-level roles</span>
+          <h1 id="hero-title">Hi, I&rsquo;m <span class="grad">Harold R. Aguilar</span></h1>
+          <p class="hero-role">BSIT Student / Aspiring IT Professional</p>
+          <p class="hero-lede">Designing and building practical digital systems with a focus on usability, reliability, and modern technology. I work across web development, databases, and responsible AI-assisted workflows.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projects">View My Work →</a>
+            <a class="btn btn-ghost" href="assets/resume.pdf" download>Download Resume</a>
+          </div>
+          <div class="hero-meta">
+            <span>📍 San Antonio, Paranaque City</span>
+            <a href="https://github.com/haroldaguilar4438-byte" target="_blank" rel="noopener">GitHub ↗</a>
+            <a href="https://www.linkedin.com/in/haroldaguilar" target="_blank" rel="noopener">LinkedIn ↗</a>
+            <a href="mailto:aguilarhrld@gmail.com">aguilarhrld@gmail.com</a>
+          </div>
+        </div>
+        <div class="hero-card reveal visible" aria-label="Technical preview">
+          <div class="terminal-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span><span class="t">developer — portfolio.ts</span></div>
+          <div class="terminal" id="termLines" aria-hidden="false">
+            <div><span class="t-dim">// whoami</span></div>
+            <div><span class="t-blue">const</span> <span class="t-white">developer</span> <span class="t-dim">=</span> <span class="t-green">{</span></div>
+            <div>&nbsp;&nbsp;name: <span class="t-yellow">&quot;Harold R. Aguilar&quot;</span>,</div>
+            <div>&nbsp;&nbsp;focus: [<span class="t-yellow">&quot;web&quot;</span>, <span class="t-yellow">&quot;databases&quot;</span>, <span class="t-yellow">&quot;security-aware&quot;</span>],</div>
+            <div>&nbsp;&nbsp;ai_policy: <span class="t-yellow">&quot;assist, verify, own the decision&quot;</span>,</div>
+            <div>&nbsp;&nbsp;status: <span class="t-green">&quot;ready_for_internship&quot;</span></div>
+            <div><span class="t-green">}</span><span class="t-dim">;</span></div>
+            <div style="margin-top:.6rem"><span class="t-dim" id="termTyping">$ npm run build — portfolio ready for review</span></div>
+          </div>
+          <div class="profile-strip">
+            <!-- Replace src with your professional photo. Keep it professional, plain background. -->
+            <div class="avatar" role="img" aria-label="Profile initials">HA</div>
+            <div><strong>Harold R. Aguilar</strong><small>BSIT Student · Paranaque City</small></div>
+            <a class="btn btn-ghost btn-sm" href="#contact">Hire Me</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= ABOUT ================= -->
+    <section class="block" id="about" aria-labelledby="about-t">
+      <div class="container">
+        <p class="kicker reveal">01 — About Me</p>
+        <h2 class="h2 reveal" id="about-t">Reliable junior developer, trained to ship maintainable systems.</h2>
+        <p class="sub reveal">BSIT student focused on web development and databases.</p>
+        <div class="grid-2">
+          <article class="card reveal">
+            <h3 style="margin-top:0">Profile</h3>
+            <p style="color:var(--muted)">I am a <strong style="color:var(--text)">BSIT student at Datamex College of Saint Adeline</strong> interested in <strong style="color:var(--text)">web development and database systems</strong>. I enjoy building <strong style="color:var(--text)">simple, useful web applications — clean pages, working forms, and organized records</strong> and care about code that is readable, tested, and secure by default.</p>
+            <p style="color:var(--muted)">My strengths are <strong style="color:var(--text)">persistence in debugging, clear communication, and willingness to learn new tools</strong>. My current career direction is <strong style="color:var(--text)">junior web development, starting with frontend fundamentals and PHP/MySQL backend basics</strong>, and I am preparing for internship and entry-level interviews through practice projects and documented troubleshooting.</p>
+            <div>
+              <span class="tag">Education-first</span><span class="tag teal">Security-aware</span><span class="tag grey">AI-verified workflow</span>
+            </div>
+          </article>
+          <div class="card reveal">
+            <h3 style="margin-top:0">Education &amp; Focus</h3>
+            <ul class="timeline">
+              <li><strong>BS in Information Technology</strong><br /><span style="color:var(--muted);font-size:.9rem">Datamex College of Saint Adeline · Relevant coursework: Web Systems, Databases, Computer Fundamentals</span></li>
+              <li><strong>Development focus</strong><br /><span style="color:var(--muted);font-size:.9rem">Responsive pages with HTML/CSS/JS · PHP fundamentals · MySQL CRUD and schema basics</span></li>
+              <li><strong>Career goal</strong><br /><span style="color:var(--muted);font-size:.9rem">Internship → junior web developer → deeper backend and database skills</span></li>
+            </ul>
+            <div class="grid-2" style="margin-top:1rem">
+              <div><strong>Interests</strong><p style="color:var(--muted);font-size:.88rem;margin:.3rem 0 0">Web applications, school management tools, learning backend development</p></div>
+              <div><strong>Strengths</strong><p style="color:var(--muted);font-size:.88rem;margin:.3rem 0 0">Debugging persistence, documentation, teamwork, follow-through</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SKILLS ================= -->
+    <section class="block" id="skills" aria-labelledby="skills-t">
+      <div class="container">
+        <p class="kicker reveal">02 — Technical Skills</p>
+        <h2 class="h2 reveal" id="skills-t">Categorized, honest, and interview-ready.</h2>
+        <p class="sub reveal">Grouped by area, with honest proficiency levels instead of percentages.</p>
+        <div class="grid-4">
+          <div class="card reveal"><div class="skill-head"><div class="icon" aria-hidden="true">▣</div><span class="level intermediate">Fundamentals</span></div><h3>Frontend</h3><ul class="skill-list"><li>HTML</li><li>CSS</li><li>JavaScript</li><li>Responsive design</li></ul></div>
+          <div class="card reveal"><div class="skill-head"><div class="icon" aria-hidden="true">⬡</div><span class="level familiar">Familiar</span></div><h3>Backend</h3><ul class="skill-list"><li>PHP fundamentals</li><li>Form handling</li><li>REST basics</li><li>Auth basics</li></ul></div>
+          <div class="card reveal"><div class="skill-head"><div class="icon" aria-hidden="true">▤</div><span class="level familiar">Familiar</span></div><h3>Database</h3><ul class="skill-list"><li>MySQL fundamentals</li><li>SQL queries</li><li>CRUD operations</li><li>Schema basics</li></ul></div>
+          <div class="card reveal"><div class="skill-head"><div class="icon" aria-hidden="true">◈</div><span class="level familiar">Familiar</span></div><h3>Programming</h3><ul class="skill-list"><li>JavaScript</li><li>PHP</li><li>Java basics</li><li>Problem-solving</li></ul></div>
+          <div class="card reveal"><div class="skill-head"><div class="icon" aria-hidden="true">⚙</div><span class="level intermediate">Fundamentals</span></div><h3>Tools &amp; Platforms</h3><ul class="skill-list"><li>VS Code</li><li>Git</li><li>GitHub</li><li>XAMPP</li></ul></div>
+          <div class="card reveal"><div class="skill-head"><div class="icon" aria-hidden="true">◎</div><span class="level familiar">Familiar</span></div><h3>UI / UX</h3><ul class="skill-list"><li>Figma</li><li>Responsive design</li><li>Accessibility basics</li></ul></div>
+          <div class="card reveal"><div class="skill-head"><div class="icon" aria-hidden="true">⬣</div><span class="level familiar">Familiar</span></div><h3>Cybersecurity</h3><ul class="skill-list"><li>Input validation</li><li>Password hashing</li><li>Access control</li></ul></div>
+          <div class="card reveal"><div class="skill-head"><div class="icon" aria-hidden="true">✦</div><span class="level familiar">Familiar</span></div><h3>AI-Assisted Dev</h3><ul class="skill-list"><li>Prompting</li><li>Code review</li><li>Testing AI output</li></ul></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROJECTS ================= -->
+    <section class="block" id="projects" aria-labelledby="proj-t">
+      <div class="container">
+        <p class="kicker reveal">03 — Projects</p>
+        <h2 class="h2 reveal" id="proj-t">Case studies, not screenshots.</h2>
+        <p class="sub reveal">Each project opens into a full case study: problem, solution, stack, process, and lessons.</p>
+
+        <!-- Featured: Web app -->
+        <article class="card project-featured reveal">
+          <div class="pf-grid">
+            <div class="pf-media" aria-label="Project preview illustration">
+              <div class="mock" aria-hidden="true">
+                <div class="mock-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+                <div class="mock-body"><div class="mock-line mid"></div><div class="mock-line"></div><div class="mock-line short"></div><div class="mock-row"><div class="mock-btn"></div><div class="mock-btn alt"></div></div></div>
+              </div>
+              <small class="mono" style="color:var(--muted)">Portfolio interface · responsive single-page build</small>
+            </div>
+            <div class="pf-body">
+              <span class="tag">Featured · Web Application</span> <span class="tag teal">Complete</span>
+              <h3>Personal Portfolio Website</h3>
+              <p><strong style="color:var(--text)">Problem:</strong> As a student I needed one place to present my background, skills, and school projects to instructors and future employers.<br />
+              <strong style="color:var(--text)">Solution:</strong> This single-page portfolio — semantic sections, responsive layout, working contact form, and an embedded resume.</p>
+              <p><strong style="color:var(--text)">My role:</strong> Sole developer — design, markup, styling, and form wiring · <strong style="color:var(--text)">Stack:</strong> HTML, CSS, vanilla JavaScript, PHP (contact API)</p>
+              <div><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag teal">PHP</span><span class="tag grey">Responsive</span></div>
+              <details class="case"><summary>Full case study: architecture, process, challenges</summary>
+                <div class="case-body"><dl>
+                  <dt>Key features</dt><dd>Sticky navigation with active-section highlight · scroll-reveal animations · mobile menu · validated contact form (SMTP backend + fallback) · embedded resume viewer · back-to-top button</dd>
+                  <dt>Architecture</dt><dd>Static page with a single content config for easy updates · contact form posts to a PHP mail endpoint</dd>
+                  <dt>Development process</dt><dd>1. Section outline → 2. Design system (colors, spacing, type) → 3. Markup → 4. Responsive CSS → 5. Interactions → 6. Contact wiring → 7. Cross-device check</dd>
+                  <dt>Challenge → Solution</dt><dd>PDF embed looked like a print dialog → hid the viewer toolbar and framed it as a clean document card. Lesson: default embeds are rarely presentation-ready.</dd>
+                  <dt>Results</dt><dd>Personal/academic project — no production metrics. It is the site you are reading now.</dd>
+                  <dt>What I learned</dt><dd>Design tokens keep a page consistent · progressive enhancement (backend first, fallback second) keeps forms working everywhere · never put secrets in frontend code</dd>
+                </dl></div>
+              </details>
+            </div>
+          </div>
+        </article>
+
+        <div class="case-grid">
+          <article class="card reveal">
+            <span class="tag teal">Database Project</span> <span class="tag grey">In Progress</span>
+            <h3>Student Record Management System</h3>
+            <p><strong style="color:var(--text)">Problem:</strong> Class lists kept in spreadsheets get messy — duplicates, no validation, hard to search.<br /><strong style="color:var(--text)">Approach:</strong> A small PHP/MySQL app: normalized students table, CRUD pages, search and validation.</p>
+            <div><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag grey">CRUD</span></div>
+            <details class="case"><summary>Data prep, queries, insights</summary>
+              <div class="case-body"><dl>
+                <dt>Data preparation</dt><dd>Defined one students table (id, full name, course, year level, contact) with required fields and unique student numbers</dd>
+                <dt>Schema &amp; queries</dt><dd>Primary key on student number · SELECT with LIKE search · INSERT/UPDATE with server-side validation · prepared statements throughout</dd>
+                <dt>Features</dt><dd>Add/edit/delete records, search by name, simple pagination, login gate for editing</dd>
+                <dt>What I learned so far</dt><dd>Schema decisions outlive code — getting column rules right early prevents bad data later</dd>
+              </dl></div>
+            </details>
+          </article>
+          <article class="card reveal">
+            <span class="tag">Web App Project</span> <span class="tag grey">Complete</span>
+            <h3>Task Manager (To-Do List)</h3>
+            <p><strong style="color:var(--text)">Specialization:</strong> Frontend fundamentals — DOM manipulation, state in JavaScript, and localStorage persistence.<br />A clean to-do app: add, complete, filter, and delete tasks that survive reloads.</p>
+            <div><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag grey">JavaScript</span></div>
+            <details class="case"><summary>Scope, build, lessons</summary>
+              <div class="case-body"><dl>
+                <dt>Scope</dt><dd>Single-page app only — no backend. Included filters (all/active/done); excluded accounts and syncing.</dd>
+                <dt>Build highlights</dt><dd>Render-from-state pattern · event delegation on the list · localStorage save/load with JSON fallback for corrupt data</dd>
+                <dt>Lessons learned</dt><dd>Keeping one source of truth (the tasks array) made every feature simpler than patching the DOM directly</dd>
+              </dl></div>
+            </details>
+          </article>
+          <article class="card reveal" style="border-style:dashed">
+            <span class="tag grey">In Progress</span>
+            <h3>School Management (EduPortal)</h3>
+            <p>A school management build covering records, transcript requests, and reports. The full case study lands here when it ships.</p>
+            <div><span class="tag grey">Records</span><span class="tag grey">Transcripts</span><span class="tag grey">Reports</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PROBLEM SOLVING ================= -->
+    <section class="block" id="problem-solving" aria-labelledby="ps-t">
+      <div class="container">
+        <p class="kicker reveal">04 — Problem-Solving Portfolio</p>
+        <h2 class="h2 reveal" id="ps-t">How I debug under pressure.</h2>
+        <p class="sub reveal">Each case follows the same trail: symptoms → investigation → root cause → solution → lesson.</p>
+        <div class="acc reveal">
+          <div class="acc-item open">
+            <button class="acc-btn" aria-expanded="true"><span class="acc-num">#01</span> Login session lost after redirect</button>
+            <div class="acc-panel"><p><strong>Symptoms:</strong> Login succeeded but the next page showed the user as logged out. <strong>Investigation:</strong> Reproduced twice, checked session values with a debug dump, confirmed the redirect ran before any session write. <strong>Root cause:</strong> Missing session start on the landing page. <strong>Solution:</strong> Added it consistently and re-tested login → dashboard → logout. <strong>Tools:</strong> Browser DevTools, PHP error log. <strong>Lesson:</strong> Verify shared setup (sessions, includes) on every page, not just the login handler.</p></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-btn" aria-expanded="false"><span class="acc-num">#02</span> Layout breaks on mobile</button>
+            <div class="acc-panel"><div class="cols"><div><strong>Investigation</strong><p>Narrowed the viewport in DevTools, found a fixed-width card forcing horizontal scroll. Tools: responsive mode, element inspector.</p></div><div><strong>Solution &amp; lesson</strong><p>Switched the grid to flexible columns with wrap. Now I check small screens first, not last.</p></div></div></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-btn" aria-expanded="false"><span class="acc-num">#03</span> Page loads slowly with many records</button>
+            <div class="acc-panel"><p><strong>Symptoms:</strong> Record list took seconds to render. <strong>Investigation:</strong> Counted rows returned — the query fetched everything with no limit. <strong>Root cause:</strong> No pagination or search filter. <strong>Solution:</strong> Added LIMIT-based pagination and a name search. <strong>Tools:</strong> MySQL client, timing checks. <strong>Lesson:</strong> Never render unbounded query results.</p></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-btn" aria-expanded="false"><span class="acc-num">#04</span> Apache won't start in XAMPP (port conflict)</button>
+            <div class="acc-panel"><p><strong>Symptoms:</strong> XAMPP showed a port-80 error on start. <strong>Investigation:</strong> Read the control-panel log, checked which app held the port. <strong>Root cause:</strong> Another program occupied port 80. <strong>Solution:</strong> Stopped the conflicting app and restarted; noted the config alternative. <strong>Tools:</strong> XAMPP logs, Task Manager. <strong>Lesson:</strong> Read the log first — it usually names the cause.</p></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-btn" aria-expanded="false"><span class="acc-num">#05</span> Git push rejected</button>
+            <div class="acc-panel"><p><strong>Symptoms:</strong> Push failed with a non-fast-forward error. <strong>Investigation:</strong> Compared local and remote history — the remote had commits I lacked. <strong>Root cause:</strong> Tried to push without pulling first. <strong>Solution:</strong> Pulled, resolved one small conflict, pushed cleanly. <strong>Tools:</strong> Git log/status, GitHub. <strong>Lesson:</strong> Pull before push; commit early and often.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= SECURITY + AI ================= -->
+    <section class="block" id="security" aria-labelledby="sec-t">
+      <div class="container">
+        <p class="kicker reveal">05 — Cybersecurity Awareness</p>
+        <h2 class="h2 reveal" id="sec-t">Defensive thinking, by default.</h2>
+        <p class="sub reveal">I don&rsquo;t claim to be a security engineer. I demonstrate that my builds consider threats, impact, prevention, and mitigation.</p>
+        <div class="card reveal">
+          <span class="tag">Case study</span>
+          <h3 style="margin:.5rem 0">Protecting a student login form</h3>
+          <div class="flow" aria-label="Threat to lessons flow">
+            <div class="flow-step"><strong>Threat / Risk</strong><small>Guessed passwords, SQL injection in the login field</small></div>
+            <div class="flow-step"><strong>Impact</strong><small>Someone else's records exposed or changed</small></div>
+            <div class="flow-step"><strong>Prevention</strong><small>Hashed passwords, prepared statements, required validation</small></div>
+            <div class="flow-step"><strong>Mitigation</strong><small>Generic error messages, basic lockout delay, activity logging</small></div>
+            <div class="flow-step"><strong>Lessons</strong><small>Validation runs on server too — never trust the browser alone</small></div>
+          </div>
+          <div class="grid-3">
+            <div><strong>Authentication</strong><p style="color:var(--muted);font-size:.88rem">Hashed passwords, MFA awareness, secure session handling, safe recovery flows.</p></div>
+            <div><strong>Input &amp; Access</strong><p style="color:var(--muted);font-size:.88rem">Validation on client + server, parameterized queries, role-based access control.</p></div>
+            <div><strong>Data Protection</strong><p style="color:var(--muted);font-size:.88rem">Least privilege, no secrets in code, careful error messages, backups.</p></div>
+          </div>
+        </div>
+
+        <p class="kicker reveal" style="margin-top:2.6rem" id="ai">06 — Responsible AI Literacy</p>
+        <h2 class="h2 reveal">AI assists. I own the outcome.</h2>
+        <p class="sub reveal">AI supported drafting, debugging, and learning — never replaced my judgment. Every AI suggestion was verified by reading docs, testing code, and re-checking logic.</p>
+        <div class="grid-2">
+          <div class="card reveal">
+            <h3 style="margin-top:0">How I use AI responsibly</h3>
+            <ul style="color:var(--muted);font-size:.92rem;padding-left:1.1rem;margin:.5rem 0">
+              <li><strong style="color:var(--text)">Tools:</strong> ChatGPT and Copilot — only what I actually used</li>
+              <li><strong style="color:var(--text)">Used for:</strong> explaining errors, drafting boilerplate, SQL help, docs summaries</li>
+              <li><strong style="color:var(--text)">Done by me:</strong> architecture, final code, testing, security checks, writing</li>
+              <li><strong style="color:var(--text)">Verification:</strong> ran the code, read official docs, tested edge cases</li>
+              <li><strong style="color:var(--text)">AI mistakes caught:</strong> suggested a JavaScript method that didn't exist → fixed by checking MDN; drafted a query with string concatenation → rewrote with parameters</li>
+            </ul>
+          </div>
+          <div class="card reveal">
+            <h3 style="margin-top:0">My verification rule</h3>
+            <p class="pull">“If I can&rsquo;t explain it and test it, I don&rsquo;t ship it — no matter who drafted it.”</p>
+            <p style="color:var(--muted);font-size:.9rem">Final human decision on every AI-assisted task: keep, edit, or discard — recorded below.</p>
+          </div>
+        </div>
+        <div class="table-wrap reveal" style="margin-top:1rem" aria-label="AI usage log">
+          <table>
+            <thead><tr><th>AI Tool</th><th>Purpose / Task</th><th>Output Used</th><th>Verification</th><th>Human Decision</th></tr></thead>
+            <tbody>
+              <tr><td>ChatGPT</td><td>Explaining a confusing PHP session error</td><td>Suggested checklist — used the reasoning, not the code</td><td>Reproduced the bug, tested the fix, read PHP docs</td><td>Kept with edits</td></tr>
+              <tr><td>Copilot</td><td>Contact-form validation boilerplate</td><td>Draft only</td><td>Manual testing + keyboard and screen-reader pass</td><td>Rewrote for accessibility</td></tr>
+              <tr><td>ChatGPT</td><td>SQL JOIN examples for the records project</td><td>Two example queries, adapted to my tables</td><td>Ran against test data, checked row counts</td><td>Kept with edits</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= PRESENCE + RESUME ================= -->
+    <section class="block" id="presence" aria-labelledby="pres-t">
+      <div class="container">
+        <p class="kicker reveal">07 — Professional Presence</p>
+        <h2 class="h2 reveal" id="pres-t">Find me where engineers are hired.</h2>
+        <p class="sub reveal">My code and professional profile — kept consistent with everything on this page.</p>
+        <div class="presence-grid">
+          <div class="card reveal">
+            <div class="skill-head"><div class="icon" aria-hidden="true">⌁</div><span class="tag">GitHub</span></div>
+            <h3 style="margin:.4rem 0">Code that proves it</h3>
+            <p style="color:var(--muted);font-size:.9rem">Pinned repos, clear READMEs (setup, stack, screenshots), meaningful commits. Recruiters open this first.</p>
+            <p class="mono" style="font-size:.82rem;color:var(--primary-2)">github.com/haroldaguilar4438-byte</p>
+            <div style="display:flex;gap:.5rem;flex-wrap:wrap"><a class="btn btn-primary btn-sm" href="https://github.com/haroldaguilar4438-byte" target="_blank" rel="noopener">Open GitHub ↗</a><a class="btn btn-ghost btn-sm" href="#projects">See my projects ↓</a></div>
+          </div>
+          <div class="card reveal">
+            <div class="skill-head"><div class="icon" aria-hidden="true">◍</div><span class="tag teal">LinkedIn</span></div>
+            <h3 style="margin:.4rem 0">Profile that reads professionally</h3>
+            <p style="color:var(--muted);font-size:.9rem">BSIT Student | Aspiring Web Developer | HTML · CSS · PHP · MySQL</p>
+            <p class="mono" style="font-size:.82rem;color:var(--accent)">linkedin.com/in/haroldaguilar</p>
+            <div style="display:flex;gap:.5rem;flex-wrap:wrap"><a class="btn btn-primary btn-sm" href="https://www.linkedin.com/in/haroldaguilar" target="_blank" rel="noopener">Open LinkedIn ↗</a><a class="btn btn-ghost btn-sm" href="mailto:aguilarhrld@gmail.com">Email me</a></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="resume" aria-labelledby="res-t">
+      <div class="container">
+        <p class="kicker reveal">08 — Resume</p>
+        <h2 class="h2 reveal" id="res-t">Recruiter-ready, one document.</h2>
+        <p class="sub reveal">ATS-friendly PDF with education, skills, and contact. Preview below — download for the full file.</p>
+        <div class="resume-grid">
+          <div class="resume-viewer reveal" aria-label="Resume preview">
+            <div class="resume-chrome" aria-hidden="true">
+              <span class="resume-file"><span class="file-badge">PDF</span> Harold-R-Aguilar-Resume.pdf</span>
+              <span class="resume-pages mono">1 page · updated</span>
+            </div>
+            <!-- Clean embed: toolbar/navpanes hidden so it reads as a document, not a print dialog -->
+            <iframe src="assets/resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=Fit&page=1" title="Resume PDF preview" loading="lazy"></iframe>
+          </div>
+          <div class="card reveal">
+            <h3 style="margin-top:0">Harold R. Aguilar — Resume</h3>
+            <p style="color:var(--muted);font-size:.9rem">Bachelor of Information Technology · Datamex College of Saint Adeline · San Antonio, Parañaque City</p>
+            <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin:.8rem 0 1rem">
+              <a class="btn btn-primary" href="assets/resume.pdf" download>Download PDF ↓</a>
+              <a class="btn btn-ghost" href="assets/resume.pdf" target="_blank" rel="noopener">Full Screen ↗</a>
+            </div>
+            <ul style="color:var(--muted);font-size:.87rem;padding-left:1.1rem;margin:0;display:grid;gap:.35rem">
+              <li>One page, clear headings, real contact details</li>
+              <li>Matches the skills and projects on this page</li>
+              <li>Best for recruiters, panelists, and coordinators</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CAREER + REFLECTION ================= -->
+    <section class="block" id="career" aria-labelledby="car-t">
+      <div class="container">
+        <p class="kicker reveal">09 — Career Plan</p>
+        <h2 class="h2 reveal" id="car-t">Where I&rsquo;m going, step by step.</h2>
+        <p class="sub reveal"><strong style="color:var(--text)">Target position:</strong> Junior Web Developer (internship first) — frontend fundamentals now, PHP/MySQL backend next.</p>
+        <div class="card reveal roadmap">
+          <div class="road-step now"><time>NOW</time><div><strong>Build proof</strong><p style="color:var(--muted);margin:.3rem 0">Finish 3 portfolio projects · write clear READMEs · practice explaining code aloud.</p></div></div>
+          <div class="road-step"><time>0–6 MO</time><div><strong>Skills to improve</strong><p style="color:var(--muted);margin:.3rem 0">JavaScript depth, SQL joins, PHP form handling and validation · <strong style="color:var(--text)">Learn:</strong> basic authentication, testing habits</p></div></div>
+          <div class="road-step"><time>1 YEAR</time><div><strong>Gain experience</strong><p style="color:var(--muted);margin:.3rem 0">Internship or entry-level role — ship reviewed code with a team, learn code review.</p></div></div>
+          <div class="road-step"><time>3 YEARS</time><div><strong>Specialize</strong><p style="color:var(--muted);margin:.3rem 0">Full-stack web development — own features end-to-end, help new teammates.</p></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="reflection" aria-labelledby="ref-t">
+      <div class="container">
+        <p class="kicker reveal">10 — Final Reflection</p>
+        <h2 class="h2 reveal" id="ref-t">What building this taught me.</h2>
+        <div class="card reveal">
+          <div class="reflection">
+            <p>When I started this portfolio, I thought the goal was to list what I know. I finished understanding that employers look for how I think: how I break down a problem, how I verify my work, and how honestly I describe what I can and cannot do yet. Each project below replaced with real work taught me more than any tutorial — especially the parts where something broke and I had to investigate instead of guessing.</p>
+            <p class="pull">The most valuable skill I developed was not a framework. It was documenting decisions: what I tried, what failed, and what I would change next time.</p>
+            <p>Working with databases showed me that design decisions outlive code. A clear schema, validated inputs, and controlled access prevent entire classes of bugs and security issues. Studying defensive security — hashing, prepared statements, least privilege — changed how I write even small features. I now treat every form and query as a trust boundary.</p>
+            <p>Using AI responsibly shaped my process as well. AI helped me draft boilerplate, explain unfamiliar errors, and explore alternatives faster. But it also produced confident mistakes: invented methods, insecure patterns, and vague explanations. I learned to verify everything against documentation and tests, and to keep a log of what AI suggested versus what I finally shipped. AI made me faster; verification made me reliable.</p>
+            <p>I still need to improve in <strong>deeper JavaScript, testing discipline, and explaining trade-offs clearly in interviews</strong>. My next professional goal is <strong>earning an internship where I can ship reviewed code with a team</strong>, and this portfolio is my commitment to getting there with honest, verifiable work.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= CONTACT ================= -->
+    <section class="block" id="contact" aria-labelledby="con-t">
+      <div class="container">
+        <p class="kicker reveal">11 — Contact</p>
+        <h2 class="h2 reveal" id="con-t">Let&rsquo;s talk about your team&rsquo;s problems.</h2>
+        <p class="sub reveal">Best for internships, junior roles, and technical conversations. I reply from <strong style="color:var(--text)">aguilarhrld@gmail.com</strong>.</p>
+        <div class="contact-grid">
+          <div class="card reveal">
+            <h3 style="margin-top:0">Direct channels</h3>
+            <p style="color:var(--muted)">📍 San Antonio, Paranaque City<br />✉️ <a href="mailto:aguilarhrld@gmail.com">aguilarhrld@gmail.com</a><br />⌁ <a href="https://github.com/haroldaguilar4438-byte" target="_blank" rel="noopener">GitHub</a> · ◍ <a href="https://www.linkedin.com/in/haroldaguilar" target="_blank" rel="noopener">LinkedIn</a></p>
+            <hr style="border:0;border-top:1px solid var(--border);margin:1rem 0" />
+            <p style="font-size:.88rem;color:var(--muted)">For recruiters: share the role, stack, and location and I&rsquo;ll reply with relevant project links and availability. For panelists: all claims on this page map to repos and logs above.</p>
+          </div>
+          <form class="card reveal" id="contactForm" action="https://formsubmit.co/aguilarhrld@gmail.com" method="POST" aria-label="Contact form">
+            <!-- Live delivery via FormSubmit (no password in code). First submit sends you an activation email — click Activate once. -->
+            <input type="hidden" name="_subject" value="Portfolio inquiry — Harold R. Aguilar" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
+            <div class="field" data-field="name">
+              <label for="f-name">Name</label>
+              <input id="f-name" name="name" type="text" placeholder="Your full name" autocomplete="name" required />
+              <p class="error">Please enter your name.</p>
+            </div>
+            <div class="field" data-field="email">
+              <label for="f-email">Email</label>
+              <input id="f-email" name="email" type="email" placeholder="you@company.com" autocomplete="email" required />
+              <p class="error">Enter a valid email address.</p>
+            </div>
+            <div class="field" data-field="subject">
+              <label for="f-subject">Subject</label>
+              <input id="f-subject" name="subject" type="text" placeholder="Internship / Junior role / Project inquiry" required />
+              <p class="error">Please add a subject.</p>
+            </div>
+            <div class="field" data-field="message">
+              <label for="f-message">Message</label>
+              <textarea id="f-message" name="message" placeholder="Hi — I saw your project on… I'd like to discuss…" required></textarea>
+              <p class="hint">At least 10 characters. No sensitive data, please.</p>
+              <p class="error">Message needs at least 10 characters.</p>
+            </div>
+            <button class="btn btn-primary" type="submit" style="width:100%" id="sendBtn">Send Message →</button>
+            <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+            <p class="hint">Delivered to aguilarhrld@gmail.com. First time: check your Gmail for a FormSubmit activation email and click Activate.</p>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <button id="toTop" aria-label="Back to top" title="Back to top">↑</button>
+
+  <footer>
+    <div class="container foot">
+      <span>© <span id="year">2026</span> Harold R. Aguilar · Built with vanilla HTML/CSS/JS · <span class="mono">js/content.js</span> for easy updates</span>
+      <nav aria-label="Footer"><a href="#home">Home</a><a href="#projects">Projects</a><a href="#resume">Resume</a><a href="#contact">Contact</a></nav>
+    </div>
+  </footer>
+
+  <script src="js/content.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
