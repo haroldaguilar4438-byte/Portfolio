@@ -5,6 +5,11 @@
 // Local XAMPP: use api/config.local.php (see config.example.php).
 // Production: set real env vars on your host (Render/Railway/VPS). GitHub Pages CANNOT run this file.
 
+// Never render PHP errors to visitors (stack traces can contain arguments).
+ini_set('display_errors', '0');
+ini_set('log_errors', '1');
+error_reporting(E_ALL);
+
 header('Content-Type: application/json; charset=utf-8');
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -80,10 +85,22 @@ $headers = [
 $body = "Name: {$name}\nEmail: {$email}\nSubject: {$subject}\nIP: {$ip}\n\n{$message}\n";
 
 // ---- send via Gmail SMTP ----
-$err = smtp_send('smtp.gmail.com', 587, $user, $pass, $user, $to, implode("\r\n", $headers), $body);
-if ($err !== true) {
-  error_log('portfolio smtp: ' . $err); // server log only, no secrets
-  fail('Mail server rejected the message. Please email ' . $to . ' directly.', 502);
+try {
+  $result = smtp_send('smtp.gmail.com', 587, $user, $pass, $user, $to, implode("\r\n", $headers), $body);
+} catch (Throwable $t) {
+  error_log('portfolio smtp: exception ' . get_class($t));
+  $result = 'send|Internal mail error.';
+}
+if ($result !== true) {
+  error_log('portfolio smtp: ' . $result); // server log only, no secrets
+  [$stage] = explode('|', $result, 2) + ['unknown'];
+  $msg = match ($stage) {
+    'connect' => 'Could not reach the mail server. Please try again later.',
+    'tls' => 'Secure connection to the mail server failed. Please try again later.',
+    'auth' => 'Mail login was rejected. The site owner needs to check the mail user/app password.',
+    default => 'Mail server rejected the message. Please email ' . $to . ' directly.',
+  };
+  fail($msg, 502);
 }
 
 echo json_encode(['ok' => true]);
@@ -112,42 +129,52 @@ function smtp_cmd($fp, string $cmd, array $want): array {
   return [true, $text];
 }
 
-/** @return true|string true on success, error string (sanitized) on failure */
+/** @return true|string true on success, "stage|detail" (sanitized, no secrets) on failure */
 function smtp_send(string $host, int $port, string $user, string $pass, string $from, string $to, string $headers, string $body) {
   $fp = @stream_socket_client("tcp://{$host}:{$port}", $errno, $errstr, 15);
-  if (!$fp) return 'Connection failed.';
+  if (!$fp) return 'connect|Connection failed.';
   stream_set_timeout($fp, 15);
 
   [$code] = smtp_read($fp);
-  if ($code !== 220) { fclose($fp); return 'SMTP greeting failed.'; }
+  if ($code !== 220) { fclose($fp); return 'connect|SMTP greeting failed.'; }
 
   [$ok, $e] = smtp_cmd($fp, 'EHLO portfolio', [250]);
-  if (!$ok) { fclose($fp); return $e; }
+  if (!$ok) { fclose($fp); return 'connect|' . $e; }
   [$ok, $e] = smtp_cmd($fp, 'STARTTLS', [220]);
-  if (!$ok) { fclose($fp); return $e; }
+  if (!$ok) { fclose($fp); return 'tls|' . $e; }
+  // Pin TLS verification to a real CA bundle (XAMPP/Apache php.ini often leaves openssl.cafile unset)
+  $ca = null;
+  foreach (['C:\\xampp\\apache\\bin\\curl-ca-bundle.crt', 'C:\\xampp\\php\\extras\\ssl\\cacert.pem', ini_get('openssl.cafile')] as $c) {
+    if (is_string($c) && $c !== '' && is_file($c)) { $ca = $c; break; }
+  }
+  if ($ca === null) { fclose($fp); return 'tls|No CA bundle found for verification.'; }
+  stream_context_set_option($fp, ['ssl' => [
+    'verify_peer' => true, 'verify_peer_name' => true,
+    'peer_name' => $host, 'cafile' => $ca,
+  ]]);
   if (!@stream_socket_enable_crypto($fp, true, STREAM_CRYPTO_METHOD_TLS_CLIENT)) {
-    fclose($fp); return 'TLS negotiation failed.';
+    fclose($fp); return 'tls|TLS negotiation failed.';
   }
   [$ok, $e] = smtp_cmd($fp, 'EHLO portfolio', [250]);
-  if (!$ok) { fclose($fp); return $e; }
+  if (!$ok) { fclose($fp); return 'tls|' . $e; }
   [$ok, $e] = smtp_cmd($fp, 'AUTH LOGIN', [334]);
-  if (!$ok) { fclose($fp); return $e; }
+  if (!$ok) { fclose($fp); return 'auth|' . $e; }
   [$ok, $e] = smtp_cmd($fp, base64_encode($user), [334]);
-  if (!$ok) { fclose($fp); return 'Authentication rejected (check user/app password).'; }
+  if (!$ok) { fclose($fp); return 'auth|Username rejected.'; }
   [$ok, $e] = smtp_cmd($fp, base64_encode($pass), [235]);
-  if (!$ok) { fclose($fp); return 'Authentication rejected (check user/app password).'; }
+  if (!$ok) { fclose($fp); return 'auth|App password rejected.'; }
   [$ok, $e] = smtp_cmd($fp, "MAIL FROM:<{$from}>", [250]);
-  if (!$ok) { fclose($fp); return $e; }
+  if (!$ok) { fclose($fp); return 'send|' . $e; }
   [$ok, $e] = smtp_cmd($fp, "RCPT TO:<{$to}>", [250, 251]);
-  if (!$ok) { fclose($fp); return $e; }
+  if (!$ok) { fclose($fp); return 'send|' . $e; }
   [$ok, $e] = smtp_cmd($fp, 'DATA', [354]);
-  if (!$ok) { fclose($fp); return $e; }
+  if (!$ok) { fclose($fp); return 'send|' . $e; }
 
   $stuffed = preg_replace('/^\./m', '..', $body);
   fwrite($fp, $headers . "\r\n\r\n" . $stuffed . "\r\n.\r\n");
   [$code2, $text2] = smtp_read($fp);
   fwrite($fp, "QUIT\r\n");
   fclose($fp);
-  if ($code2 !== 250) return 'Message refused by mail server.';
+  if ($code2 !== 250) return 'send|Message refused by mail server.';
   return true;
 }
