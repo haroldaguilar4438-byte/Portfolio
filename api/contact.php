@@ -60,8 +60,8 @@ $hits[] = $now;
 @file_put_contents($rlFile, json_encode($hits), LOCK_EX);
 
 // ---- credentials (env wins, local file fallback) ----
-$user = getenv('GMAIL_USER') ?: '';
-$pass = getenv('GMAIL_APP_PASSWORD') ?: '';
+$user = getenv('aguilarhrld@gmail.com') ?: '';
+$pass = getenv('qyox ixtq nopa yxhw') ?: '';
 $to   = getenv('MAIL_TO') ?: '';
 $localFile = __DIR__ . '/config.local.php';
 if (($user === '' || $pass === '') && is_file($localFile)) {
