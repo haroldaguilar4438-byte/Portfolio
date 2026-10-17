@@ -154,10 +154,12 @@
         <!-- Featured: Project 1 — EduPortal -->
         <article class="card project-featured reveal">
           <div class="pf-grid">
-            <div class="pf-media" aria-label="EduPortal project preview">
-              <!-- Real screenshot support: save your capture as assets/projects/eduportal.png and set
-                   projects[0].screenshot in js/content.js — the image is injected automatically.
-                   Until then this neutral wireframe shows, so no fake screenshot is displayed. -->
+            <div class="pf-media has-shot" aria-label="EduPortal project preview">
+              <!-- Real screenshot captured from the live site. If the file is ever missing,
+                   onerror removes the image and restores the neutral wireframe below. -->
+              <img class="pf-shot" src="assets/projects/eduportal.png" alt="EduPortal — Datamex College of Saint Adeline school management interface, showing the landing page with Student, Parent and Teacher portal cards" width="1440" height="1000" loading="lazy" onerror="this.parentElement.classList.remove('has-shot');this.remove()" />
+              <!-- "Live preview" opens the running system in a preview window (it cannot be
+                   embedded here — EduPortal sends X-Frame-Options: SAMEORIGIN). -->
               <div class="mock" aria-hidden="true">
                 <div class="mock-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
                 <div class="mock-body"><div class="mock-line mid"></div><div class="mock-line"></div><div class="mock-line short"></div><div class="mock-row"><div class="mock-btn"></div><div class="mock-btn alt"></div></div></div>
@@ -181,6 +183,7 @@
                 </dl></div>
               </details>
               <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem">
+                <button class="btn btn-ghost btn-sm" type="button" data-live-preview="https://skyblue-sardine-644746.hostingersite.com" data-preview-msg="Live preview of EduPortal — scroll inside the frame.">▸ Live preview</button>
                 <a class="btn btn-primary btn-sm" href="https://skyblue-sardine-644746.hostingersite.com" target="_blank" rel="noopener">View Project ↗</a>
               </div>
             </div>
@@ -195,7 +198,7 @@
                 <div class="mock-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
                 <div class="mock-body"><div class="mock-line mid"></div><div class="mock-line"></div><div class="mock-line short"></div><div class="mock-row"><div class="mock-btn"></div><div class="mock-btn alt"></div></div></div>
               </div>
-              <small class="mono" style="color:var(--muted)">Portfolio interface · responsive single-page build</small>
+              <small class="mono" style="color:var(--muted)">Animated preview · or open the live site below</small>
             </div>
             <div class="pf-body">
               <span class="tag">Personal Project · Web Application</span> <span class="tag teal">Complete</span>
@@ -214,6 +217,9 @@
                   <dt>What I learned</dt><dd>Design tokens keep a page consistent · progressive enhancement (backend first, fallback second) keeps forms working everywhere · never put secrets in frontend code</dd>
                 </dl></div>
               </details>
+              <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem">
+                <a class="btn btn-primary btn-sm" href="https://haroldaguilar4438-byte.github.io/Portfolio/" target="_blank" rel="noopener">View Live Site ↗</a>
+              </div>
             </div>
           </div>
         </article>

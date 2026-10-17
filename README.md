@@ -3,6 +3,20 @@
 Premium single-page portfolio for a BSIT / CS student preparing for internship and junior roles.
 Vanilla HTML + CSS + JS. No dependencies. Fast, responsive, accessible.
 
+## Project showcase
+- Project images live in `assets/projects/` (e.g. `eduportal.png`). The `<img class="pf-shot">` in each card is plain HTML — no JS needed — and falls back to the wireframe if the file is missing.
+- Refresh a screenshot any time (headless Chrome):
+```powershell
+& "C:\Program Files\Google\Chrome\Application\chrome.exe" --headless=new --disable-gpu --hide-scrollbars --window-size=1440,1000 --virtual-time-budget=12000 --screenshot="assets\projects\eduportal.png" "https://your-site-url"
+```
+- `▸ Live preview` opens the running site in a popup window. Use it instead of an iframe when the target sends `X-Frame-Options: SAMEORIGIN` (or a `frame-ancestors` CSP), which blocks embedding.
+- Add/edit project entries in `js/content.js` → `projects`. Reserved entries stay hidden while `published: false`.
+
+## Contact form
+- Posts to `api/contact.php` (PHP required — GitHub Pages is static, so the live site on Pages cannot run it).
+- Two transports, auto-selected: HTTPS mail API (`RESEND_API_KEY`, port 443) first, then Gmail SMTP via bundled PHPMailer.
+- Copy `api/config.example.php` → `api/config.local.php` and fill it in. `config.local.php` is gitignored: **never upload it.**
+
 ## Run locally
 Just open `index.html`, or serve for correct font/CORS behavior:
 ```powershell

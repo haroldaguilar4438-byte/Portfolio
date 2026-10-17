@@ -51,8 +51,9 @@ const PORTFOLIO = {
       category: "Academic / Capstone Project",
       type: "Team Project",
       url: "https://skyblue-sardine-644746.hostingersite.com",
-      // Real screenshot captured from the live site (regenerate any time):
-      //   chrome --headless=new --window-size=1440,1000 --screenshot=assets/projects/eduportal.png <url>
+      // Real screenshot captured from the live site. The <img> for Project 1 lives inline in
+      // index.html (more robust than injecting it); for future projects copy that same pattern
+      // and point src at assets/projects/<name>.png.
       screenshot: "assets/projects/eduportal.png",
       technologies: ["HTML", "CSS", "Tailwind CSS", "Bootstrap 5.3", "JavaScript"],
       published: true

@@ -192,24 +192,26 @@
     );
   }
 
-  // Optional project screenshots — only injected when a real file is configured
-  // in js/content.js, so no 404s and no fabricated imagery.
-  const proj = (window.PORTFOLIO && window.PORTFOLIO.projects) || [];
-  const featured = proj.find((p) => p && p.published && p.screenshot);
-  const media = document.querySelector("#projects .project-featured .pf-media");
-  if (featured && media) {
-    const img = document.createElement("img");
-    img.className = "pf-shot";
-    img.alt = featured.title + " — live interface screenshot";
-    img.loading = "lazy";
-    img.decoding = "async";
-    img.width = 1440;
-    img.height = 1000;
-    img.addEventListener("load", () => media.classList.add("has-shot")); // hide wireframe fallback
-    img.addEventListener("error", () => img.remove()); // no image = keep the neutral wireframe
-    img.src = featured.screenshot;
-    media.insertBefore(img, media.firstChild);
-  }
+  // Live preview — opens the running system in a separate preview window (real, interactive).
+  // EduPortal sends X-Frame-Options: SAMEORIGIN, so it cannot be embedded in an iframe here;
+  // a popup window is the reliable way to show the live, moving interface.
+  document.querySelectorAll("[data-live-preview]").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const url = btn.dataset.livePreview;
+      const win = window.open(url, "livePreview", "width=1280,height=860,scrollbars=yes,resizable=yes");
+      if (!win) {
+        // Popup blocked by the browser — fall back to a normal new tab
+        const a = document.createElement("a");
+        a.href = url;
+        a.target = "_blank";
+        a.rel = "noopener";
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+      }
+    });
+  });
 
   // Back to top (only new global feature — everything else already existed)
   const toTop = document.getElementById("toTop");
