@@ -207,6 +207,11 @@ section.block{padding:3.4rem 0;scroll-margin-top:calc(var(--header-h) + 12px)}
 .mock-row{display:flex;gap:.5rem}
 .mock-btn{height:30px;flex:1;border-radius:8px;background:rgba(79,124,255,.25);border:1px solid rgba(79,124,255,.4)}
 .mock-btn.alt{background:rgba(45,212,191,.15);border-color:rgba(45,212,191,.35)}
+.pf-shot{
+  width:100%;height:auto;display:block;border-radius:12px;
+  border:1px solid var(--border-strong);box-shadow:var(--shadow-sm);
+}
+.pf-media.has-shot .mock{display:none} /* real screenshot replaces the wireframe */
 .pf-body{padding:1.7rem}
 .pf-body h3{margin:.5rem 0;font-size:1.45rem;letter-spacing:-.02em}
 .pf-body p{color:var(--muted);font-size:.94rem}

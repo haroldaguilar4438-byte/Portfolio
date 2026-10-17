@@ -199,11 +199,15 @@
   const media = document.querySelector("#projects .project-featured .pf-media");
   if (featured && media) {
     const img = document.createElement("img");
-    img.src = featured.screenshot;
-    img.alt = featured.title + " — interface screenshot";
+    img.className = "pf-shot";
+    img.alt = featured.title + " — live interface screenshot";
     img.loading = "lazy";
-    img.style.cssText = "width:100%;border-radius:12px;border:1px solid var(--border-strong);display:block";
-    img.addEventListener("error", () => img.remove()); // hide if the file is missing
+    img.decoding = "async";
+    img.width = 1440;
+    img.height = 1000;
+    img.addEventListener("load", () => media.classList.add("has-shot")); // hide wireframe fallback
+    img.addEventListener("error", () => img.remove()); // no image = keep the neutral wireframe
+    img.src = featured.screenshot;
     media.insertBefore(img, media.firstChild);
   }
 

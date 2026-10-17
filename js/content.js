@@ -51,9 +51,9 @@ const PORTFOLIO = {
       category: "Academic / Capstone Project",
       type: "Team Project",
       url: "https://skyblue-sardine-644746.hostingersite.com",
-      // TODO: drop a real screenshot at assets/projects/eduportal.png, then set this to
-      // "assets/projects/eduportal.png" and it renders automatically. Empty = no image request.
-      screenshot: "",
+      // Real screenshot captured from the live site (regenerate any time):
+      //   chrome --headless=new --window-size=1440,1000 --screenshot=assets/projects/eduportal.png <url>
+      screenshot: "assets/projects/eduportal.png",
       technologies: ["HTML", "CSS", "Tailwind CSS", "Bootstrap 5.3", "JavaScript"],
       published: true
     },
