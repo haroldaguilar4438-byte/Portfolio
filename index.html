@@ -149,10 +149,46 @@
       <div class="container">
         <p class="kicker reveal">03 — Projects</p>
         <h2 class="h2 reveal" id="proj-t">Case studies, not screenshots.</h2>
-        <p class="sub reveal">Each project opens into a full case study: problem, solution, stack, process, and lessons.</p>
+        <p class="sub reveal">Each project opens into a full case study: problem, solution, stack, process, and lessons. New projects are added from <span class="mono">js/content.js</span>.</p>
 
-        <!-- Featured: Web app -->
+        <!-- Featured: Project 1 — EduPortal -->
         <article class="card project-featured reveal">
+          <div class="pf-grid">
+            <div class="pf-media" aria-label="EduPortal project preview">
+              <!-- Real screenshot support: save your capture as assets/projects/eduportal.png and set
+                   projects[0].screenshot in js/content.js — the image is injected automatically.
+                   Until then this neutral wireframe shows, so no fake screenshot is displayed. -->
+              <div class="mock" aria-hidden="true">
+                <div class="mock-bar"><span class="dot r"></span><span class="dot y"></span><span class="dot g"></span></div>
+                <div class="mock-body"><div class="mock-line mid"></div><div class="mock-line"></div><div class="mock-line short"></div><div class="mock-row"><div class="mock-btn"></div><div class="mock-btn alt"></div></div></div>
+              </div>
+              <small class="mono" style="color:var(--muted)">Live interface · responsive web build</small>
+            </div>
+            <div class="pf-body">
+              <span class="tag">Project 1 · Academic / Capstone</span> <span class="tag teal">Team Project</span>
+              <h3>EduPortal — Web-Based Integrated School Management System</h3>
+              <p><strong style="color:var(--text)">Problem:</strong> A school's daily work — admissions, grade records, permits, and fee payments — was spread across separate manual processes, so students and parents had no single place to see status.<br />
+              <strong style="color:var(--text)">Solution:</strong> One web system for Datamex College of Saint Adeline covering enrollment, role-based portals, and academic programs from Kindergarten through College.</p>
+              <p><strong style="color:var(--text)">My role:</strong> Team project — academic collaboration with groupmates. <strong style="color:var(--text)">Stack (verified from the live site):</strong> HTML, CSS, Tailwind CSS, Bootstrap 5.3, vanilla JavaScript.</p>
+              <div><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Tailwind CSS</span><span class="tag">Bootstrap 5.3</span><span class="tag grey">JavaScript</span></div>
+              <details class="case"><summary>Full case study: scope, features, lessons</summary>
+                <div class="case-body"><dl>
+                  <dt>Verified modules</dt><dd>Online enrollment and admissions (document upload, application status) · Student Portal (grades, permits, ledger) · Parent Portal (child progress tracking) · Teacher Portal (classrooms, tasks, grade sheets) · Academic programs by stage</dd>
+                  <dt>Verified technologies</dt><dd>Read directly from the deployed site's own source: Tailwind CSS and Bootstrap 5.3.3 (CSS + JS bundle), Bootstrap Icons, Font Awesome, Google Fonts (Inter, Plus Jakarta Sans), and custom JS modules for content, design system, responsive behavior, and an admissions chatbot</dd>
+                  <dt>Project type</dt><dd>Academic / capstone team project — individual responsibilities not split publicly to avoid misattributing teammates' work</dd>
+                  <dt>Status</dt><dd>Live and publicly reachable. Note: portal areas are behind sign-in, so only public pages are viewable without an account</dd>
+                  <dt>What I learned</dt><dd>Deploying a real system taught me version control, environment setup, and how much careful UI work large institutions require</dd>
+                </dl></div>
+              </details>
+              <div style="display:flex;gap:.6rem;flex-wrap:wrap;margin-top:1rem">
+                <a class="btn btn-primary btn-sm" href="https://skyblue-sardine-644746.hostingersite.com" target="_blank" rel="noopener">View Project ↗</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <!-- Featured: Personal portfolio (secondary project) -->
+        <article class="card project-featured reveal" style="margin-top:1.1rem">
           <div class="pf-grid">
             <div class="pf-media" aria-label="Project preview illustration">
               <div class="mock" aria-hidden="true">
@@ -162,7 +198,7 @@
               <small class="mono" style="color:var(--muted)">Portfolio interface · responsive single-page build</small>
             </div>
             <div class="pf-body">
-              <span class="tag">Featured · Web Application</span> <span class="tag teal">Complete</span>
+              <span class="tag">Personal Project · Web Application</span> <span class="tag teal">Complete</span>
               <h3>Personal Portfolio Website</h3>
               <p><strong style="color:var(--text)">Problem:</strong> As a student I needed one place to present my background, skills, and school projects to instructors and future employers.<br />
               <strong style="color:var(--text)">Solution:</strong> This single-page portfolio — semantic sections, responsive layout, working contact form, and an embedded resume.</p>
@@ -407,11 +443,9 @@
             <hr style="border:0;border-top:1px solid var(--border);margin:1rem 0" />
             <p style="font-size:.88rem;color:var(--muted)">For recruiters: share the role, stack, and location and I&rsquo;ll reply with relevant project links and availability. For panelists: all claims on this page map to repos and logs above.</p>
           </div>
-          <form class="card reveal" id="contactForm" action="https://formsubmit.co/aguilarhrld@gmail.com" method="POST" aria-label="Contact form">
-            <!-- Live delivery via FormSubmit (no password in code). First submit sends you an activation email — click Activate once. -->
+          <form class="card reveal" id="contactForm" action="api/contact.php" method="POST" aria-label="Contact form">
+            <!-- Server-side delivery: api/contact.php (secrets stay on the server). -->
             <input type="hidden" name="_subject" value="Portfolio inquiry — Harold R. Aguilar" />
-            <input type="hidden" name="_template" value="table" />
-            <input type="hidden" name="_captcha" value="false" />
             <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off" aria-hidden="true" />
             <div class="field" data-field="name">
               <label for="f-name">Name</label>
@@ -436,7 +470,7 @@
             </div>
             <button class="btn btn-primary" type="submit" style="width:100%" id="sendBtn">Send Message →</button>
             <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
-            <p class="hint">Delivered to aguilarhrld@gmail.com. First time: check your Gmail for a FormSubmit activation email and click Activate.</p>
+            <p class="hint">Delivered to aguilarhrld@gmail.com. You'll see a confirmation only after the mail service accepts your message.</p>
           </form>
         </div>
       </div>

@@ -283,6 +283,8 @@ textarea{min-height:130px;resize:vertical}
 .form-status{margin-top:.8rem;font-size:.88rem;padding:.7rem .9rem;border-radius:10px;display:none}
 .form-status.ok{display:block;background:rgba(45,212,191,.12);border:1px solid rgba(45,212,191,.4);color:#8ff0dd}
 .form-status.err{display:block;background:rgba(251,113,133,.1);border:1px solid rgba(251,113,133,.4);color:#fecdd3}
+.form-status.sending{display:block;background:rgba(79,124,255,.12);border:1px solid rgba(79,124,255,.4);color:#b9c8ff}
+#sendBtn:disabled{opacity:.65;cursor:not-allowed;transform:none}
 /* footer */
 footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem;color:var(--muted);font-size:.86rem}
 .foot{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;align-items:center}

@@ -126,50 +126,63 @@
         return;
       }
       if (sendBtn) { sendBtn.disabled = true; sendBtn.textContent = "Sending…"; }
-      status.className = "form-status ok";
-      status.textContent = "Sending…";
+      status.className = "form-status sending";
+      status.textContent = "Sending your message…";
       try {
-        // 1) True SMTP backend (same origin — keeps Gmail secrets server-side)
-        let sent = false, backendMissing = false;
+        // Real delivery via own backend. Success is shown ONLY when the backend
+        // confirms the mail service accepted the message.
+        let sent = false, notConfigured = false, serverMsg = "";
         try {
           const r = await fetch("api/contact.php", {
             method: "POST",
             headers: { "Content-Type": "application/json", Accept: "application/json" },
             body: JSON.stringify({ name, email, subject, message, _honey: form._honey ? form._honey.value : "" })
           });
-          if (r.ok) {
-            const j = await r.json().catch(() => ({}));
-            if (j && j.ok) sent = true;
-            else if (r.status === 501) backendMissing = true;
-            else throw new Error((j && j.error) || "backend rejected");
-          } else if (r.status === 501) backendMissing = true;
-          else {
-            const j = await r.json().catch(() => ({}));
-            throw new Error((j && j.error) || "backend error");
+          const j = await r.json().catch(() => ({}));
+          if (r.ok && j && j.ok) {
+            sent = true;
+          } else if (r.status === 501) {
+            notConfigured = true;
+          } else if (r.status === 422) {
+            status.className = "form-status err";
+            status.textContent = (j && j.error) || "Please check the highlighted fields.";
+            return;
+          } else if (r.status === 429) {
+            status.className = "form-status err";
+            status.textContent = "Too many messages from this device. Please try again later.";
+            return;
+          } else {
+            serverMsg = (j && j.error) || "";
+            throw new Error(serverMsg || "mail service error");
           }
         } catch (bErr) {
-          // Backend unreachable on static hosts (GitHub Pages) — fall through to FormSubmit
-          if (String((bErr && bErr.message) || "").includes("Failed to fetch")) backendMissing = true;
-          else if (!backendMissing) throw bErr;
+          const msg = String((bErr && bErr.message) || "");
+          if (msg.includes("Failed to fetch") || msg.includes("NetworkError") || msg.includes("Load failed")) {
+            notConfigured = true; // static host with no PHP backend
+          } else {
+            throw bErr;
+          }
         }
-        // 2) Fallback for static hosting (no secrets in code)
         if (!sent) {
-          const res = await fetch("https://formsubmit.co/ajax/aguilarhrld@gmail.com", {
-            method: "POST",
-            headers: { "Content-Type": "application/json", Accept: "application/json" },
-            body: JSON.stringify({ name, email, subject, message, _subject: "Portfolio inquiry — Harold R. Aguilar", _template: "table" })
-          });
-          if (!res.ok) throw new Error("send failed");
+          if (notConfigured) {
+            status.className = "form-status err";
+            status.textContent = "The mail service isn't available on this host yet. Please email aguilarhrld@gmail.com directly — I reply to every message.";
+            return;
+          }
+          throw new Error(serverMsg || "send failed");
         }
         status.className = "form-status ok";
-        status.textContent = "Message sent. Thank you — I reply from aguilarhrld@gmail.com.";
+        status.textContent = "Message sent — it was accepted for delivery. I'll reply from aguilarhrld@gmail.com.";
         form.reset();
       } catch (err) {
-        // Fallback: native POST (works even if fetch is blocked)
+        const detail = String((err && err.message) || "");
         status.className = "form-status err";
-        status.textContent = "Direct send was blocked — submitting the classic way…";
-        form.submit();
-      } finally {
+        if (detail && !detail.includes("Failed to fetch")) {
+          status.textContent = detail + " You can also email aguilarhrld@gmail.com directly.";
+        } else {
+          status.textContent = "Network problem — the message was not sent. Please try again, or email aguilarhrld@gmail.com directly.";
+        }
+        } finally {
         if (sendBtn) { sendBtn.disabled = false; sendBtn.textContent = "Send Message →"; }
       }
     });
@@ -177,6 +190,21 @@
     form.querySelectorAll("input,textarea").forEach((el) =>
       el.addEventListener("input", () => el.closest(".field")?.classList.remove("invalid"))
     );
+  }
+
+  // Optional project screenshots — only injected when a real file is configured
+  // in js/content.js, so no 404s and no fabricated imagery.
+  const proj = (window.PORTFOLIO && window.PORTFOLIO.projects) || [];
+  const featured = proj.find((p) => p && p.published && p.screenshot);
+  const media = document.querySelector("#projects .project-featured .pf-media");
+  if (featured && media) {
+    const img = document.createElement("img");
+    img.src = featured.screenshot;
+    img.alt = featured.title + " — interface screenshot";
+    img.loading = "lazy";
+    img.style.cssText = "width:100%;border-radius:12px;border:1px solid var(--border-strong);display:block";
+    img.addEventListener("error", () => img.remove()); // hide if the file is missing
+    media.insertBefore(img, media.firstChild);
   }
 
   // Back to top (only new global feature — everything else already existed)

@@ -35,6 +35,48 @@ const PORTFOLIO = {
     { label: "GitHub", value: "https://github.com/haroldaguilar4438-byte", hint: "Repositories, commits, project code" },
     { label: "LinkedIn", value: "https://www.linkedin.com/in/haroldaguilar", hint: "Headline, skills, projects, education" },
     { label: "Email", value: "aguilarhrld@gmail.com", hint: "Professional contact" }
+  ],
+  // ============================================================
+  // PROJECT REGISTRY
+  // Add or edit projects here. Each entry renders in the Projects section.
+  //   published:false  -> reserved slot, stays hidden until real details exist
+  //   technologies     -> only list tech you have VERIFIED (check the live site/source)
+  //   url              -> real link only, never a placeholder
+  //   screenshot       -> path under assets/projects/ (optional)
+  // ============================================================
+  projects: [
+    {
+      number: 1,
+      title: "EduPortal — Web-Based Integrated School Management System",
+      category: "Academic / Capstone Project",
+      type: "Team Project",
+      url: "https://skyblue-sardine-644746.hostingersite.com",
+      // TODO: drop a real screenshot at assets/projects/eduportal.png, then set this to
+      // "assets/projects/eduportal.png" and it renders automatically. Empty = no image request.
+      screenshot: "",
+      technologies: ["HTML", "CSS", "Tailwind CSS", "Bootstrap 5.3", "JavaScript"],
+      published: true
+    },
+    {
+      number: 2,
+      title: "", // TODO: add title when your groupmate's project is ready
+      category: "",
+      type: "",
+      url: "",
+      screenshot: "",
+      technologies: [],
+      published: false // hidden until real details are filled in
+    },
+    {
+      number: 3,
+      title: "",
+      category: "",
+      type: "",
+      url: "",
+      screenshot: "",
+      technologies: [],
+      published: false // hidden until real details are filled in
+    }
   ]
 };
 // Expose for main.js (and future rendering)
