@@ -213,6 +213,39 @@
     });
   });
 
+  // In-card live embed — click to load the running site inside the card (no cost until asked).
+  // Only for targets that allow framing; others use the preview-window button above.
+  document.querySelectorAll("[data-live-embed]").forEach((btn) => {
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const card = btn.closest(".card");
+      if (!card) return;
+      const existing = card.querySelector(".live-embed");
+      if (existing) {
+        existing.remove();
+        const n = card.querySelector(".live-embed-note");
+        if (n) n.remove();
+        card.classList.remove("live-open");
+        btn.innerHTML = "▸ Try it live";
+        return;
+      }
+      const frame = document.createElement("iframe");
+      frame.className = "live-embed";
+      frame.title = "Live site preview";
+      frame.src = btn.dataset.liveEmbed;
+      frame.loading = "lazy";
+      frame.setAttribute("referrerpolicy", "no-referrer");
+      frame.setAttribute("sandbox", "allow-scripts allow-same-origin allow-popups");
+      const note = document.createElement("span");
+      note.className = "live-embed-note";
+      note.textContent = "live site — scroll inside the frame";
+      btn.insertAdjacentElement("beforebegin", frame);
+      frame.insertAdjacentElement("afterend", note);
+      card.classList.add("live-open");
+      btn.innerHTML = "▾ Close live view";
+    });
+  });
+
   // Back to top (only new global feature — everything else already existed)
   const toTop = document.getElementById("toTop");
   if (toTop) {

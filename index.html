@@ -252,11 +252,53 @@
               </dl></div>
             </details>
           </article>
+          <article class="card reveal">
+            <span class="tag teal">Project 2 · Data Analysis</span> <span class="tag grey">Completed</span>
+            <img class="card-shot" src="assets/projects/cafe-monthly-revenue.png" alt="Monthly net revenue chart produced in the Cafe Sales Data Analysis Excel workbook, based on simulated 2025 point-of-sale data" loading="lazy" width="1200" height="686" />
+            <h3>Cafe Sales Data Analysis</h3>
+            <p><strong style="color:var(--text)">Problem:</strong> A four-branch Metro Manila cafe had no way to see where its money actually came from — no clean view of branch, category, or time patterns.<br />
+            <strong style="color:var(--text)">Approach:</strong> Built an Excel analysis: inspect the raw export, clean it, calculate revenue metrics, group results, chart them, and turn findings into actions.</p>
+            <div><span class="tag">Excel</span><span class="tag">Data cleaning</span><span class="tag">Formulas</span><span class="tag grey">Charts</span><span class="tag grey">Git</span></div>
+            <details class="case"><summary>Data prep, metrics, findings</summary>
+              <div class="case-body"><dl>
+                <dt>Data &amp; scope</dt><dd>Simulated point-of-sale export, calendar year 2025, four branches, 1,836 raw rows published for inspection. The dataset intentionally contains duplicates, blanks, typos, and text-formatted dates so the cleaning process is demonstrable.</dd>
+                <dt>Cleaning</dt><dd>Kept the untouched raw sheet, logged every cleaning decision separately, and produced a clean dataset — so each transformation is documented and reproducible.</dd>
+                <dt>Analysis</dt><dd>Net revenue, average order value, discount rate, median, spread and units per order, grouped by branch, category, product, month, weekday, time slot, payment method and customer type.</dd>
+                <dt>Output</dt><dd>Eight linked charts, eight findings with supporting evidence, and eight prioritized actions with success measures.</dd>
+                <dt>Data honesty</dt><dd>All figures come from simulated data, not a real business — stated plainly in the repository so no one mistakes it for real revenue.</dd>
+              </dl></div>
+            </details>
+            <div style="display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap">
+              <a class="btn btn-ghost btn-sm" href="https://github.com/ickostlr/cafe-sales-data-analysis" target="_blank" rel="noopener">View Repository ↗</a>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <span class="tag">Project 3 · Web Project</span> <span class="tag grey">Group Project</span>
+            <img class="card-shot" src="assets/projects/mesakitchen.png" alt="Mesa Kitchen food website — landing page with menu, about and visit sections" loading="lazy" width="1440" height="1000" />
+            <h3>Mesa Kitchen — Food Website</h3>
+            <p><strong style="color:var(--text)">Problem:</strong> A home-style kitchen needed a clear online presence that shows its menu, hours and location without staff effort.<br />
+            <strong style="color:var(--text)">Solution:</strong> A responsive single-page restaurant site with a browsable menu, an order summary, and visit details — no build tools, just HTML, CSS and JavaScript.</p>
+            <div><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag grey">JavaScript</span><span class="tag grey">Responsive</span></div>
+            <details class="case"><summary>Scope, build, lessons</summary>
+              <div class="case-body"><dl>
+                <dt>Verified features</dt><dd>Menu browsing, about and visit sections, order summary with running total, and business details (hours, address, phone) — read from the deployed site.</dd>
+                <dt>Build</dt><dd>Hand-written HTML, CSS and JavaScript in a single self-contained page; no frameworks or external libraries detected in the deployed source.</dd>
+                <dt>Scope limits</dt><dd>Ordering is interface-only — the site states that placing an order does not send it anywhere. No backend, payments or accounts were built.</dd>
+                <dt>Lessons learned</dt><dd>A small, complete site beats a large unfinished one — shipping menu, cart logic and contact details taught more than starting a bigger build.</dd>
+              </dl></div>
+            </details>
+            <div style="display:flex;gap:.5rem;margin-top:1rem;flex-wrap:wrap">
+              <button class="btn btn-primary btn-sm" type="button" data-live-embed="https://binaraizeljade4-stack.github.io/website/projects/food-website/">▸ Try it live</button>
+              <a class="btn btn-ghost btn-sm" href="https://binaraizeljade4-stack.github.io/website/projects/food-website/" target="_blank" rel="noopener">Open Site ↗</a>
+            </div>
+          </article>
+
           <article class="card reveal" style="border-style:dashed">
-            <span class="tag grey">In Progress</span>
-            <h3>School Management (EduPortal)</h3>
-            <p>A school management build covering records, transcript requests, and reports. The full case study lands here when it ships.</p>
-            <div><span class="tag grey">Records</span><span class="tag grey">Transcripts</span><span class="tag grey">Reports</span></div>
+            <span class="tag grey">Next project</span>
+            <h3>Your next build</h3>
+            <p>Add it here using the same card structure — image, description, stack, case study, and a real link.</p>
+            <div><span class="tag grey">Problem</span><span class="tag grey">Solution</span><span class="tag grey">Result</span></div>
           </article>
         </div>
       </div>

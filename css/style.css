@@ -212,6 +212,20 @@ section.block{padding:3.4rem 0;scroll-margin-top:calc(var(--header-h) + 12px)}
   border:1px solid var(--border-strong);box-shadow:var(--shadow-sm);
 }
 .pf-media.has-shot .mock{display:none} /* real screenshot replaces the wireframe */
+/* images inside case-grid project cards */
+.card-shot{
+  width:100%;height:auto;display:block;border-radius:10px;margin:.7rem 0 .2rem;
+  border:1px solid var(--border);background:#fff;
+}
+/* in-card live embed (targets that allow framing) */
+.live-embed{
+  width:100%;height:360px;border:1px solid var(--border-strong);border-radius:10px;
+  display:block;background:#0a0f1e;margin:.8rem 0 .2rem;
+}
+.card .live-embed + .live-embed-note{
+  display:block;font-family:var(--font-mono);font-size:.7rem;color:var(--muted);margin-top:-.4rem;
+}
+.card.live-open .card-shot{display:none} /* live view replaces the static shot */
 /* animated preview for the portfolio's own card */
 .project-featured .mock{position:relative;overflow:hidden}
 .project-featured .mock-bar::after{

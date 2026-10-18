@@ -60,23 +60,25 @@ const PORTFOLIO = {
     },
     {
       number: 2,
-      title: "", // TODO: add title when your groupmate's project is ready
-      category: "",
-      type: "",
-      url: "",
-      screenshot: "",
-      technologies: [],
-      published: false // hidden until real details are filled in
+      title: "Cafe Sales Data Analysis",
+      category: "Data Analysis",
+      type: "Excel Workbook Project",
+      url: "https://github.com/ickostlr/cafe-sales-data-analysis",
+      screenshot: "assets/projects/cafe-monthly-revenue.png",
+      technologies: ["Microsoft Excel", "Data cleaning", "Formulas", "Charts", "Git"],
+      note: "Simulated point-of-sale dataset (4 branches, CY2025, 1,836 raw rows) — not real business data",
+      published: true
     },
     {
       number: 3,
-      title: "",
-      category: "",
-      type: "",
-      url: "",
-      screenshot: "",
-      technologies: [],
-      published: false // hidden until real details are filled in
+      title: "Mesa Kitchen — Food Website",
+      category: "Web Project",
+      type: "Group Project",
+      url: "https://binaraizeljade4-stack.github.io/website/projects/food-website/",
+      screenshot: "assets/projects/mesakitchen.png",
+      technologies: ["HTML", "CSS", "JavaScript"],
+      note: "Single-page site; ordering is interface-only and does not submit anywhere",
+      published: true
     }
   ]
 };
