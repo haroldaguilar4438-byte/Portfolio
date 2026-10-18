@@ -143,9 +143,8 @@ img{max-width:100%;display:block}
 @keyframes blink{50%{opacity:0}}
 .profile-strip{display:flex;align-items:center;gap:.9rem;padding:.95rem 1.1rem;border-top:1px solid var(--border);background:rgba(0,0,0,.2)}
 .avatar{
-  width:52px;height:52px;border-radius:14px;flex:none;display:grid;place-items:center;
-  font-weight:700;color:#fff;background:linear-gradient(135deg,#334155,#1e293b);
-  border:1px dashed rgba(148,163,196,.5);font-size:.75rem;text-align:center;line-height:1.2;
+  width:56px;height:56px;border-radius:14px;flex:none;object-fit:cover;display:block;
+  border:1px solid var(--border-strong);box-shadow:0 6px 18px rgba(2,6,18,.5);
 }
 .profile-strip strong{display:block;font-size:.92rem}
 .profile-strip small{color:var(--muted);font-size:.8rem}
@@ -338,8 +337,13 @@ footer{border-top:1px solid var(--border);padding:2rem 0;margin-top:2rem;color:v
 #toTop.show{opacity:1;transform:none;pointer-events:auto}
 #toTop:hover{transform:translateY(-2px)}
 /* responsive */
+@media (max-width:1400px){
+  .nav-links a{padding:.5rem .48rem;font-size:.8rem;white-space:nowrap}
+  .nav{gap:.6rem}
+  .brand strong{font-size:.9rem}
+}
 @media (max-width:1240px){
-  .nav-links a{padding:.5rem .5rem;font-size:.82rem}
+  .nav-links a{padding:.5rem .4rem;font-size:.78rem}
 }
 @media (max-width:1020px){
   .hero-grid{grid-template-columns:1fr;gap:1.6rem}
