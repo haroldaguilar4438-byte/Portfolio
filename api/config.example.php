@@ -14,4 +14,7 @@ return [
 
   // ---- Where messages land ----
   'MAIL_TO' => 'aguilarhrld@gmail.com',    // your inbox
+
+  // ---- Optional ----
+  'RATE_LIMIT_PER_HOUR' => 5,              // raise locally (e.g. 50) while testing
 ];

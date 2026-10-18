@@ -138,22 +138,30 @@
             headers: { "Content-Type": "application/json", Accept: "application/json" },
             body: JSON.stringify({ name, email, subject, message, _honey: form._honey ? form._honey.value : "" })
           });
-          const j = await r.json().catch(() => ({}));
-          if (r.ok && j && j.ok) {
-            sent = true;
-          } else if (r.status === 501) {
-            notConfigured = true;
-          } else if (r.status === 422) {
-            status.className = "form-status err";
-            status.textContent = (j && j.error) || "Please check the highlighted fields.";
-            return;
-          } else if (r.status === 429) {
-            status.className = "form-status err";
-            status.textContent = "Too many messages from this device. Please try again later.";
-            return;
-          } else {
-            serverMsg = (j && j.error) || "";
-            throw new Error(serverMsg || "mail service error");
+          // A static host (GitHub Pages) returns its own HTML 404 page, not JSON.
+          // Treat any non-JSON answer as "no mail backend on this host".
+          const ctype = r.headers.get("content-type") || "";
+          let j = {};
+          if (ctype.includes("application/json")) j = await r.json().catch(() => ({}));
+          else notConfigured = true;
+
+          if (sent === false && notConfigured === false) {
+            if (r.ok && j && j.ok) {
+              sent = true;
+            } else if (r.status === 501 || r.status === 404 || r.status === 405) {
+              notConfigured = true;
+            } else if (r.status === 422) {
+              status.className = "form-status err";
+              status.textContent = (j && j.error) || "Please check the highlighted fields.";
+              return;
+            } else if (r.status === 429) {
+              status.className = "form-status err";
+              status.textContent = "Too many messages from this device. Please try again later.";
+              return;
+            } else {
+              serverMsg = (j && j.error) || "";
+              throw new Error(serverMsg || "mail service error");
+            }
           }
         } catch (bErr) {
           const msg = String((bErr && bErr.message) || "");
@@ -166,7 +174,7 @@
         if (!sent) {
           if (notConfigured) {
             status.className = "form-status err";
-            status.textContent = "The mail service isn't available on this host yet. Please email aguilarhrld@gmail.com directly — I reply to every message.";
+            status.innerHTML = 'The contact form needs a mail server, which this host doesn\'t run.<br /><a href="mailto:aguilarhrld@gmail.com" style="color:#8ff0dd">aguilarhrld@gmail.com</a> — I reply to every message.';
             return;
           }
           throw new Error(serverMsg || "send failed");

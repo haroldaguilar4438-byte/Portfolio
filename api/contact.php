@@ -94,7 +94,7 @@ function clean_line(string $s): string {
 
 /** env vars win; api/config.local.php fills the gaps (gitignored) */
 function load_config(): array {
-  $keys = ['RESEND_API_KEY', 'MAIL_FROM', 'MAIL_TO', 'GMAIL_USER', 'GMAIL_APP_PASSWORD'];
+  $keys = ['RESEND_API_KEY', 'MAIL_FROM', 'MAIL_TO', 'GMAIL_USER', 'GMAIL_APP_PASSWORD', 'RATE_LIMIT_PER_HOUR'];
   $cfg = [];
   foreach ($keys as $k) $cfg[$k] = (string)(getenv($k) ?: '');
   $file = __DIR__ . '/config.local.php';
@@ -106,11 +106,19 @@ function load_config(): array {
 }
 
 function rate_limit_ok(string $ip): bool {
+  $max = (int)(getenv('RATE_LIMIT_PER_HOUR') ?: 0);
+  $file = __DIR__ . '/config.local.php';
+  if ($max <= 0 && is_file($file)) {
+    $local = require $file;
+    if (is_array($local)) $max = (int)($local['RATE_LIMIT_PER_HOUR'] ?? 0);
+  }
+  if ($max <= 0) $max = 5; // sensible default for a live site
+
   $f = sys_get_temp_dir() . '/portfolio_rl_' . md5($ip) . '.json';
   $now = time(); $hits = [];
   if (is_file($f)) $hits = json_decode((string)@file_get_contents($f), true) ?: [];
   $hits = array_values(array_filter((array)$hits, fn($t) => ($now - (int)$t) < 3600));
-  if (count($hits) >= 5) return false;
+  if (count($hits) >= $max) return false;
   $hits[] = $now;
   @file_put_contents($f, json_encode($hits), LOCK_EX);
   return true;
