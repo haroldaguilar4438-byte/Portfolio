@@ -226,33 +226,6 @@
 
         <div class="case-grid">
           <article class="card reveal">
-            <span class="tag teal">Database Project</span> <span class="tag grey">In Progress</span>
-            <h3>Student Record Management System</h3>
-            <p><strong style="color:var(--text)">Problem:</strong> Class lists kept in spreadsheets get messy — duplicates, no validation, hard to search.<br /><strong style="color:var(--text)">Approach:</strong> A small PHP/MySQL app: normalized students table, CRUD pages, search and validation.</p>
-            <div><span class="tag">PHP</span><span class="tag">MySQL</span><span class="tag grey">CRUD</span></div>
-            <details class="case"><summary>Data prep, queries, insights</summary>
-              <div class="case-body"><dl>
-                <dt>Data preparation</dt><dd>Defined one students table (id, full name, course, year level, contact) with required fields and unique student numbers</dd>
-                <dt>Schema &amp; queries</dt><dd>Primary key on student number · SELECT with LIKE search · INSERT/UPDATE with server-side validation · prepared statements throughout</dd>
-                <dt>Features</dt><dd>Add/edit/delete records, search by name, simple pagination, login gate for editing</dd>
-                <dt>What I learned so far</dt><dd>Schema decisions outlive code — getting column rules right early prevents bad data later</dd>
-              </dl></div>
-            </details>
-          </article>
-          <article class="card reveal">
-            <span class="tag">Web App Project</span> <span class="tag grey">Complete</span>
-            <h3>Task Manager (To-Do List)</h3>
-            <p><strong style="color:var(--text)">Specialization:</strong> Frontend fundamentals — DOM manipulation, state in JavaScript, and localStorage persistence.<br />A clean to-do app: add, complete, filter, and delete tasks that survive reloads.</p>
-            <div><span class="tag">HTML</span><span class="tag">CSS</span><span class="tag grey">JavaScript</span></div>
-            <details class="case"><summary>Scope, build, lessons</summary>
-              <div class="case-body"><dl>
-                <dt>Scope</dt><dd>Single-page app only — no backend. Included filters (all/active/done); excluded accounts and syncing.</dd>
-                <dt>Build highlights</dt><dd>Render-from-state pattern · event delegation on the list · localStorage save/load with JSON fallback for corrupt data</dd>
-                <dt>Lessons learned</dt><dd>Keeping one source of truth (the tasks array) made every feature simpler than patching the DOM directly</dd>
-              </dl></div>
-            </details>
-          </article>
-          <article class="card reveal">
             <span class="tag teal">Project 2 · Data Analysis</span> <span class="tag grey">Completed</span>
             <img class="card-shot" src="assets/projects/cafe-monthly-revenue.png" alt="Monthly net revenue chart produced in the Cafe Sales Data Analysis Excel workbook, based on simulated 2025 point-of-sale data" loading="lazy" width="1200" height="686" />
             <h3>Cafe Sales Data Analysis</h3>
@@ -294,13 +267,7 @@
             </div>
           </article>
 
-          <article class="card reveal" style="border-style:dashed">
-            <span class="tag grey">Next project</span>
-            <h3>Your next build</h3>
-            <p>Add it here using the same card structure — image, description, stack, case study, and a real link.</p>
-            <div><span class="tag grey">Problem</span><span class="tag grey">Solution</span><span class="tag grey">Result</span></div>
-          </article>
-        </div>
+          </div>
       </div>
     </section>
 
