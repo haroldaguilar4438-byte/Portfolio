@@ -1,4 +1,4 @@
-# [YOUR NAME] — Industry-Ready Portfolio
+# Aguilar Harold R — Industry-Ready Portfolio
 
 Premium single-page portfolio for a BSIT / CS student preparing for internship and junior roles.
 Vanilla HTML + CSS + JS. No dependencies. Fast, responsive, accessible.
