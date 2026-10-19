@@ -12,6 +12,13 @@ Vanilla HTML + CSS + JS. No dependencies. Fast, responsive, accessible.
 - `▸ Live preview` opens the running site in a popup window. Use it instead of an iframe when the target sends `X-Frame-Options: SAMEORIGIN` (or a `frame-ancestors` CSP), which blocks embedding.
 - Add/edit project entries in `js/content.js` → `projects`. Reserved entries stay hidden while `published: false`.
 
+## Mock interview video
+- Files: `assets/video/mock-interview.mp4` + `mock-interview-poster.jpg`
+- The MP4 is **compressed to ~2.2 Mbps H.264** so the page stays fast. If you replace it with a new recording, compress it first — a raw phone recording can be 50 MB+ and will make the page slow:
+  - HandBrake (free) → preset "Fast 720p30", or
+  - Clipchamp (built into Windows) → Export → 1080p / Medium quality
+- Keep the same filenames and no code changes are needed. Keep it under ~10 MB if you can.
+
 ## Contact form
 - Posts to `api/contact.php` (PHP required — GitHub Pages is static, so the live site on Pages cannot run it).
 - Two transports, auto-selected: HTTPS mail API (`RESEND_API_KEY`, port 443) first, then Gmail SMTP via bundled PHPMailer.

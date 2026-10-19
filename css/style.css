@@ -261,6 +261,12 @@ section.block{padding:4.4rem 0;scroll-margin-top:calc(var(--header-h) + 12px)}
   display:block;font-family:var(--font-mono);font-size:.7rem;color:var(--muted);margin-top:-.4rem;
 }
 .card.live-open .card-shot{display:none} /* live view replaces the static shot */
+/* mock interview player */
+.video-frame{
+  width:100%;max-width:420px;margin:0 auto;border:1px solid var(--border-strong);
+  border-radius:14px;overflow:hidden;background:#000;box-shadow:var(--shadow-sm);
+}
+.video-frame video{width:100%;height:auto;max-height:70vh;display:block;object-fit:contain;background:#000}
 /* animated preview for the portfolio's own card */
 .project-featured .mock{position:relative;overflow:hidden}
 .project-featured .mock-bar::after{
