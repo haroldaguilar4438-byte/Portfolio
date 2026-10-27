@@ -5,3 +5,10 @@ api/config.local.php
 # OS / editor noise
 Thumbs.db
 .DS_Store
+
+# local screenshots
+screenshots/
+
+print-overview.html
+
+Portfolio-Overview.pdf
